@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Report | VCL01</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #Fdfbf7;
+            --surface: #ffffff;
+            --surface-light: #f5f2eb;
+            --accent: #8b4513;
+            --text-primary: #2b2824;
+            --text-secondary: #6e675e;
+            --border: #e6e2d8;
+            --border-hover: #d1cbc0;
+            --radius: 6px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Nunito', system-ui, sans-serif; 
+            background: var(--bg); 
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden; 
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, .subtitle { font-family: 'Lora', serif; }
+
+        header {
+            padding: 24px 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+            flex-shrink: 0;
+        }
+
+        header h1 { font-size: 1.5rem; font-weight: 500; }
+        .subtitle { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .layout-grid {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            padding: 0 64px;
+            gap: 40px;
+        }
+
+        .sidebar { width: 300px; flex-shrink: 0; padding: 40px 0; overflow-y: auto; }
+        .main-content { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            padding: 40px 0;
+            overflow: hidden;
+        }
+
+        .filter-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+
+        .filter-panel h3 { font-size: 1.1rem; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        label { font-size: 0.875rem; font-weight: 600; display: block; margin-bottom: 8px; }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        /* Virtual Scroller Styles */
+        .viewport {
+            flex: 1;
+            overflow-y: auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            position: relative;
+        }
+
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            text-align: left; 
+            table-layout: fixed; 
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        th { 
+            padding: 12px 24px; 
+            background: var(--surface-light);
+            color: var(--text-secondary); 
+            font-size: 0.75rem; 
+            font-weight: 700;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+        th:hover { background: var(--border); color: var(--text-primary); }
+        
+        /* Sort Indicators */
+        th::after { content: ' \2195'; opacity: 0.2; font-size: 0.8rem; margin-left: 4px; }
+        th.asc::after { content: ' \2191'; opacity: 1; color: var(--accent); }
+        th.desc::after { content: ' \2193'; opacity: 1; color: var(--accent); }
+        th.active-sort { color: var(--accent); }
+
+        td { 
+            padding: 12px 24px; 
+            border-bottom: 1px solid var(--border); 
+            font-size: 0.875rem; 
+            color: var(--text-secondary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        tr:hover td { background: var(--surface-light); color: var(--text-primary); }
+
+        /* Column widths */
+        .col-barcode { width: 140px; }
+        .col-desc { width: 350px; }
+        .col-dept { width: 200px; }
+        .col-sup { width: 200px; }
+        .col-num { width: 130px; text-align: right; font-variant-numeric: tabular-nums; }
+
+        .neg { color: #a64b2a; font-weight: 600; }
+        .pos { color: #4b7a47; font-weight: 600; }
+
+        .loader {
+            padding: 80px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <a href="VCL01_Q1_Performance_Report.html" class="back-link">← Back to Main Dashboard</a>
+            <h1>Department Top Sales Report</h1>
+        </div>
+        <div style="text-align: right">
+            <div id="itemCount" style="font-size: 0.75rem; font-weight: 700; color: var(--accent); margin-bottom: 4px;">-- ITEMS LOADED</div>
+            <div class="subtitle">Virtual Engine v5.1 | Protocol ALPHA</div>
+        </div>
+    </header>
+
+    <div class="layout-grid">
+        <div class="sidebar">
+            <div class="filter-panel">
+                <h3>Filters</h3>
+                <label for="deptFilter">Department</label>
+                <select id="deptFilter" onchange="handleFilterChange()">
+                    <option value="ALL">All Departments</option>
+                </select>
+
+                <label for="supplierFilter">Supplier</label>
+                <select id="supplierFilter" onchange="handleFilterChange()">
+                    <option value="ALL">All Suppliers</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div id="loading" class="loader">Initialising Dataset...</div>
+            
+            <div id="viewport" class="viewport" style="display: none;">
+                <div id="canvas" class="canvas">
+                    <table id="dataTable">
+                        <thead>
+                            <tr id="headerRow">
+                                <th class="col-barcode" data-key="barcode">Barcode</th>
+                                <th class="col-desc" data-key="description">Description</th>
+                                <th class="col-dept" data-key="dept">Department</th>
+                                <th class="col-sup" data-key="supplier">Supplier</th>
+                                <th class="col-num" data-key="sales2023">23 Sales</th>
+                                <th class="col-num" data-key="qty2023">23 Qty</th>
+                                <th class="col-num" data-key="sales2026">26 Sales</th>
+                                <th class="col-num" data-key="qty2026">26 Qty</th>
+                                <th class="col-num" data-key="variance">Variance</th>
+                                <th class="col-num" data-key="variance_pct">Var%</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="data.js"></script>
+<script>
+    const ROW_HEIGHT = 45; 
+    const BUFFER_COUNT = 20; 
+
+    let fullData = [];
+    let filteredData = [];
+    let sortConfig = { key: 'sales2026', direction: 'desc' };
+    
+    const viewport = document.getElementById('viewport');
+    const canvas = document.getElementById('canvas');
+    const tbody = document.getElementById('tableBody');
+    const dataTable = document.getElementById('dataTable');
+
+    function loadData() {
+        if (typeof window_fullData === 'undefined') {
+            document.getElementById('loading').textContent = 'Error: Data missing.';
+            return;
+        }
+
+        fullData = window_fullData.map(item => {
+            const variance = item.sales2026 - item.sales2023;
+            let variance_pct = 0;
+            if (item.sales2023 > 0) variance_pct = (variance / item.sales2023) * 100;
+            else if (item.sales2026 > 0) variance_pct = 100;
+            return { ...item, variance, variance_pct };
+        });
+
+        document.getElementById('itemCount').textContent = fullData.length.toLocaleString() + ' ITEMS LOADED';
+
+        const depts = new Set();
+        const suppliers = new Set();
+        fullData.forEach(item => {
+            if (item.dept) depts.add(item.dept);
+            if (item.supplier) suppliers.add(item.supplier);
+        });
+
+        const populateSelect = (id, items) => {
+            const select = document.getElementById(id);
+            Array.from(items).sort().forEach(val => {
+                const opt = document.createElement('option');
+                opt.value = val;
+                opt.textContent = val;
+                select.appendChild(opt);
+            });
+        };
+
+        populateSelect('deptFilter', depts);
+        populateSelect('supplierFilter', suppliers);
+
+        document.getElementById('loading').style.display = 'none';
+        viewport.style.display = 'block';
+        
+        handleFilterChange();
+        setupSortListeners();
+    }
+
+    function setupSortListeners() {
+        document.querySelectorAll('th[data-key]').forEach(th => {
+            th.addEventListener('click', () => {
+                const key = th.getAttribute('data-key');
+                if (sortConfig.key === key) {
+                    sortConfig.direction = sortConfig.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortConfig.key = key;
+                    sortConfig.direction = (key === 'description' || key === 'dept' || key === 'supplier' || key === 'barcode') ? 'asc' : 'desc';
+                }
+                applySort();
+            });
+        });
+    }
+
+    function handleFilterChange() {
+        const dVal = document.getElementById('deptFilter').value;
+        const sVal = document.getElementById('supplierFilter').value;
+
+        filteredData = fullData;
+        if (dVal !== 'ALL') filteredData = filteredData.filter(i => i.dept === dVal);
+        if (sVal !== 'ALL') filteredData = filteredData.filter(i => i.supplier === sVal);
+
+        applySort();
+    }
+
+    function applySort() {
+        const key = sortConfig.key;
+        const dir = sortConfig.direction === 'asc' ? 1 : -1;
+
+        filteredData.sort((a, b) => {
+            let valA = a[key];
+            let valB = b[key];
+
+            if (typeof valA === 'string') valA = valA.toLowerCase();
+            if (typeof valB === 'string') valB = valB.toLowerCase();
+
+            if (valA < valB) return -1 * dir;
+            if (valA > valB) return 1 * dir;
+            return 0;
+        });
+
+        // Update Header UI
+        document.querySelectorAll('th').forEach(th => {
+            th.classList.remove('active-sort', 'asc', 'desc');
+            if (th.getAttribute('data-key') === key) {
+                th.classList.add('active-sort', sortConfig.direction);
+            }
+        });
+
+        canvas.style.height = (filteredData.length * ROW_HEIGHT) + 'px';
+        viewport.scrollTop = 0;
+        render();
+    }
+
+    function render() {
+        const scrollTop = viewport.scrollTop;
+        const viewportHeight = viewport.clientHeight;
+
+        let startIndex = Math.floor(scrollTop / ROW_HEIGHT) - BUFFER_COUNT;
+        let endIndex = Math.ceil((scrollTop + viewportHeight) / ROW_HEIGHT) + BUFFER_COUNT;
+
+        startIndex = Math.max(0, startIndex);
+        endIndex = Math.min(filteredData.length, endIndex);
+
+        const offset = startIndex * ROW_HEIGHT;
+        tbody.innerHTML = '';
+        dataTable.style.transform = `translateY(${offset}px)`;
+
+        const fragment = document.createDocumentFragment();
+
+        for (let i = startIndex; i < endIndex; i++) {
+            const item = filteredData[i];
+            const row = document.createElement('tr');
+            row.style.height = ROW_HEIGHT + 'px';
+
+            const varStr = (item.variance > 0 ? '+' : '') + 'R' + Math.abs(item.variance).toLocaleString(undefined, {maximumFractionDigits:0});
+            const varClass = item.variance < 0 ? 'neg' : (item.variance > 0 ? 'pos' : '');
+            const pctText = item.sales2023 === 0 ? 'N/A' : (item.variance_pct > 0 ? '+' : '') + item.variance_pct.toFixed(1) + '%';
+
+            row.innerHTML = `
+                <td class="col-barcode">${item.barcode}</td>
+                <td class="col-desc" title="${item.description}">${item.description}</td>
+                <td class="col-dept">${item.dept}</td>
+                <td class="col-sup">${item.supplier}</td>
+                <td class="col-num">R${item.sales2023.toLocaleString(undefined, {maximumFractionDigits:0})}</td>
+                <td class="col-num">${item.qty2023.toLocaleString()}</td>
+                <td class="col-num">R${item.sales2026.toLocaleString(undefined, {maximumFractionDigits:0})}</td>
+                <td class="col-num">${item.qty2026.toLocaleString()}</td>
+                <td class="col-num ${varClass}">${varStr}</td>
+                <td class="col-num ${varClass}">${pctText}</td>
+            `;
+            fragment.appendChild(row);
+        }
+        tbody.appendChild(fragment);
+    }
+
+    let ticking = false;
+    viewport.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                render();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    window.onload = loadData;
+</script>
+</body>
+</html>

@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCL01 Randburg | Midnight Sapphire Protocol</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #Fdfbf7;
+            --surface: #ffffff;
+            --surface-light: #f5f2eb;
+            --accent: #8b4513;
+            --text-primary: #2b2824;
+            --text-secondary: #6e675e;
+            --border: #e6e2d8;
+            --border-hover: #d1cbc0;
+            --radius: 6px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Nunito', system-ui, sans-serif; 
+            background: var(--bg); 
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, .subtitle, .accent-value, .kpi-value {
+            font-family: 'Lora', serif;
+        }
+
+        .container { width: 100%; padding: 40px 64px; }
+
+        header {
+            padding: 48px 0;
+            margin-bottom: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid var(--border);
+        }
+
+        header h1 { 
+            font-size: 2rem; 
+            font-weight: 500; 
+            letter-spacing: -0.04em; 
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+        .subtitle { 
+            font-weight: 500; 
+            font-size: 0.875rem; 
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .summary-accent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .accent-card {
+            background: var(--surface);
+            padding: 32px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: border-color 0.2s ease;
+        }
+        .accent-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .accent-label { font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 12px; display: block; }
+        .accent-value { font-size: 2.5rem; font-weight: 500; letter-spacing: -0.04em; color: var(--text-primary); }
+
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-bottom: 64px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            transition: border-color 0.2s ease;
+        }
+        .card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .kpi-label { color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; margin-bottom: 8px; display: block; }
+        .kpi-value { font-size: 1.5rem; font-weight: 500; color: var(--text-primary); letter-spacing: -0.02em; }
+        .kpi-value.growth { color: var(--text-primary); }
+
+        .section-title {
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h2 { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; color: var(--text-primary); }
+        h2 span { color: var(--text-secondary); }
+
+        .viz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .chart-card {
+            background: var(--surface);
+            padding: 32px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .data-panel { 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            border-radius: var(--radius);
+            overflow-x: auto;
+            margin-bottom: 64px;
+        }
+
+        table { width: 100%; border-collapse: collapse; text-align: left; white-space: nowrap; }
+        th { 
+            padding: 16px 24px; 
+            background: var(--surface-light);
+            color: var(--text-secondary); 
+            font-size: 0.875rem; 
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+        }
+        td { padding: 16px 24px; border-bottom: 1px solid var(--border); font-size: 0.875rem; color: var(--text-secondary); }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: var(--surface-light); color: var(--text-primary); }
+
+        .num { font-variant-numeric: tabular-nums; }
+        .neg { color: #a64b2a; font-weight: 600; }
+        .pos { color: #4b7a47; font-weight: 600; }
+
+        .tab-nav { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+        .tab-link {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tab-link:hover { color: var(--text-primary); }
+        .tab-link.active { 
+            background: var(--surface-light); 
+            border-color: var(--border);
+            color: var(--text-primary); 
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--text-primary);
+            color: var(--bg);
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: opacity 0.2s;
+        }
+        .download-btn:hover { opacity: 0.9; }
+
+        .footer {
+            padding: 48px 0;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 64px;
+        }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+            margin-bottom: 64px;
+        }
+        .insight-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+        }
+        .insight-card h4 { font-size: 1rem; color: var(--text-primary); margin-bottom: 8px; font-weight: 500; }
+        .insight-card p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; }
+        
+        h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 16px 24px;
+            margin: 0;
+            color: var(--text-primary);
+            background: var(--surface-light);
+            border-bottom: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div>
+            <div class="subtitle">Operational Intelligence | Protocol ALPHA</div>
+            <h1>VCL01 Audit Dashboard</h1>
+        </div>
+        <div style="text-align: right">
+            <div style="font-size: 0.7rem; font-weight: 800; color: var(--text-secondary); opacity: 0.5;">DEEP ANALYSIS v4.0.2</div>
+        </div>
+    </header>
+
+    <div class="summary-accent-grid">
+        <div class="accent-card primary">
+            <span class="accent-label">Baseline Q1 2023 Revenue</span>
+            <span class="accent-value">R20,541,602</span>
+        </div>
+        <div class="accent-card">
+            <span class="accent-label">Active Q1 2026 Revenue</span>
+            <span class="accent-value">R6,552,525</span>
+        </div>
+    </div>
+
+    <div class="kpi-row">
+        <div class="card">
+            <span class="kpi-label">Retention Index</span>
+            <span class="kpi-value">31.9%</span>
+        </div>
+        <div class="card">
+            <span class="kpi-label">Opportunity Yield</span>
+            <span class="kpi-value growth">+14.2%</span>
+        </div>
+        <div class="card">
+            <span class="kpi-label">Success Density</span>
+            <span class="kpi-value growth">840 SKUs</span>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="chart-card" style="margin-bottom: 64px;">
+        <h2 style="margin-bottom: 40px;">Deep Sector Performance</h2>
+        <div style="height: 350px;">
+            <canvas id="mainChart"></canvas>
+        </div>
+    </div>
+
+    <div class="chart-card" style="margin-bottom: 64px;">
+        <h2 style="margin-bottom: 40px;">Top Vendor Deficits</h2>
+        <div style="height: 400px;">
+            <canvas id="supplierChart"></canvas>
+        </div>
+    </div>
+
+    <div class="section-title">
+        <h2>SKU Intelligence Matrix</h2>
+        <div>
+            <a href="DEPARTMENTS_PAGE.html" class="download-btn" style="margin-right: 8px;">Department Report</a>
+            <a href="VCL01_Full_Item_Comparison.csv" class="download-btn">Download Full Audit</a>
+        </div>
+    </div>
+
+    <div class="tab-nav">
+        <button id="btnNeg" class="tab-link active" onclick="switchTab('neg')">Revenue Deficit Audit</button>
+        <button id="btnPos" class="tab-link" onclick="switchTab('pos')">Market Capture Success</button>
+        <button id="btnSup" class="tab-link" onclick="switchTab('sup')">Supplier Analysis</button>
+    </div>
+
+    <div id="negTable" class="data-panel">
+        <table>
+            <thead>
+                <tr>
+                    <th>Barcode</th>
+                    <th>Item Description</th>
+                    <th>Department</th>
+                    <th>Supplier</th>
+                    <th>2023 Baseline</th>
+                    <th>2026 Sales</th>
+                    <th>2026 Qty</th>
+                    <th>Variance (R)</th>
+                    <th>Var (%)</th>
+                </tr>
+            </thead>
+            <tbody id="negTBody"></tbody>
+        </table>
+    </div>
+
+    <div id="posTable" class="data-panel" style="display: none;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Barcode</th>
+                    <th>Item Description</th>
+                    <th>Department</th>
+                    <th>Supplier</th>
+                    <th>2023 Baseline</th>
+                    <th>2026 Sales</th>
+                    <th>2026 Qty</th>
+                    <th>Growth (R)</th>
+                    <th>Growth (%)</th>
+                </tr>
+            </thead>
+            <tbody id="posTBody"></tbody>
+        </table>
+    </div>
+
+    <div id="supTable" class="data-panel" style="display: none;">
+        <h3 style="padding: 24px; color: var(--accent); border-bottom: 1px solid var(--border);">Supplier Deficits</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Supplier Name</th>
+                    <th>2023 Baseline</th>
+                    <th>2026 Sales</th>
+                    <th>Variance</th>
+                </tr>
+            </thead>
+            <tbody id="supNegTBody"></tbody>
+        </table>
+        <h3 style="padding: 24px; color: var(--accent); border-bottom: 1px solid var(--border); border-top: 1px solid var(--border);">Supplier Growth</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Supplier Name</th>
+                    <th>2023 Baseline</th>
+                    <th>2026 Sales</th>
+                    <th>Growth</th>
+                </tr>
+            </thead>
+            <tbody id="supPosTBody"></tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        Confidential Management Protocol | Randburg Strategic Operations | ValueCo 2026
+    </div>
+</div>
+
+<script>
+    const data = {
+  "metadata": {
+    "store": "VCL01 (Randburg)",
+    "generatedAt": "2026-04-09T11:02:30.156Z"
+  },
+  "departmentAggregation": [
+    {
+      "name": "HomeDecor Kitchen n Garden Supplies",
+      "sales2023": 36945.14559819887,
+      "sales2024": 21748.54547476273,
+      "sales2026": 976797.6399999878,
+      "gap": 939852.4944017889,
+      "pctChange": 2543.913359073643
+    },
+    {
+      "name": "Home n Kitchen",
+      "sales2023": 6954054.994297616,
+      "sales2024": 3645457.08195305,
+      "sales2026": 1179478.3999999964,
+      "gap": -5774576.59429762,
+      "pctChange": -83.03898371572875
+    },
+    {
+      "name": "Party n Gifts",
+      "sales2023": 2703314.1452399236,
+      "sales2024": 1206511.347554078,
+      "sales2026": 652167.2299999924,
+      "gap": -2051146.915239931,
+      "pctChange": -75.87527031779314
+    },
+    {
+      "name": "School n Office Supplies",
+      "sales2023": 647.6425059718545,
+      "sales2024": 532.8153115639257,
+      "sales2026": 534619.8399999967,
+      "gap": 533972.1974940249,
+      "pctChange": 82448.60282799759
+    },
+    {
+      "name": "Food Beverage n Tobacco related products",
+      "sales2023": 14918.497747909703,
+      "sales2024": 5080.171521932983,
+      "sales2026": 80116.51999999997,
+      "gap": 65198.022252090275,
+      "pctChange": 437.02806645679493
+    },
+    {
+      "name": "Sports n Outdoor",
+      "sales2023": 1169401.9341415248,
+      "sales2024": 522009.84651467,
+      "sales2026": 157134.18000000002,
+      "gap": -1012267.7541415248,
+      "pctChange": -86.56285957698928
+    },
+    {
+      "name": "Clothing Footwear Bags n Accessories",
+      "sales2023": 248.53552631578947,
+      "sales2024": 14.619736842105262,
+      "sales2026": 123317.65000000013,
+      "gap": 123069.11447368434,
+      "pctChange": 49517.71535362418
+    },
+    {
+      "name": "Other / Unmapped",
+      "sales2023": 1104226.7059315918,
+      "sales2024": 488619.5156379808,
+      "sales2026": 0,
+      "gap": -1104226.7059315918,
+      "pctChange": -100
+    },
+    {
+      "name": "Toys Games n Baby Products",
+      "sales2023": 1109628.452966923,
+      "sales2024": 458439.3739803688,
+      "sales2026": 264300.0099999999,
+      "gap": -845328.442966923,
+      "pctChange": -76.18121549665432
+    },
+    {
+      "name": "Beauty n Personal Care",
+      "sales2023": 154764.298439715,
+      "sales2024": 57186.901364906385,
+      "sales2026": 88682.04000000004,
+      "gap": -66082.25843971496,
+      "pctChange": -42.69864504019048
+    },
+    {
+      "name": "Office n Stationary",
+      "sales2023": 2062426.0618160272,
+      "sales2024": 1124806.764820352,
+      "sales2026": 129161.32999999986,
+      "gap": -1933264.7318160273,
+      "pctChange": -93.73740797833648
+    },
+    {
+      "name": "Tools n Home Implement",
+      "sales2023": 573.1821428571428,
+      "sales2024": 343.90928571428566,
+      "sales2026": 112692.81000000013,
+      "gap": 112119.62785714299,
+      "pctChange": 19560.907340598562
+    },
+    {
+      "name": "Vehicle Supplies",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 28991.569999999992,
+      "gap": 28991.569999999992,
+      "pctChange": 0
+    },
+    {
+      "name": "Household",
+      "sales2023": 4942804.610552853,
+      "sales2024": 2571348.160443458,
+      "sales2026": 1131395.359999998,
+      "gap": -3811409.250552855,
+      "pctChange": -77.11025522666874
+    },
+    {
+      "name": "Hardware",
+      "sales2023": 259806.13259815192,
+      "sales2024": 79757.25533462167,
+      "sales2026": 10909.579999999998,
+      "gap": -248896.55259815193,
+      "pctChange": -95.80087664178656
+    },
+    {
+      "name": "Pet Supplies",
+      "sales2023": 6947.9900523705855,
+      "sales2024": 3935.1898370827284,
+      "sales2026": 30743.89000000001,
+      "gap": 23795.899947629427,
+      "pctChange": 342.4860969613867
+    },
+    {
+      "name": "Houseware Groceries n Daily Necessities",
+      "sales2023": 2199.2177337893963,
+      "sales2024": 3423.849463247239,
+      "sales2026": 881596.2999999975,
+      "gap": 879397.0822662081,
+      "pctChange": 39986.81298149362
+    },
+    {
+      "name": "Nonsale Material",
+      "sales2023": 18694.955533807824,
+      "sales2024": 202.7595837127618,
+      "sales2026": 1538.25,
+      "gap": -17156.705533807824,
+      "pctChange": -91.77184456406842
+    },
+    {
+      "name": "Electronic Products",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 99305.77000000002,
+      "gap": 99305.77000000002,
+      "pctChange": 0
+    },
+    {
+      "name": "Products to be classified",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 29.98,
+      "gap": 29.98,
+      "pctChange": 0
+    },
+    {
+      "name": "Health n Household",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 300,
+      "gap": 300,
+      "pctChange": 0
+    }
+  ],
+  "topNegativeGaps": [
+    {
+      "barcode": "6009648183117",
+      "description": "WEST PACK TOILET PAPER 2ply 18's",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 385560.77276067855,
+      "sales2024": 201824.40450682436,
+      "sales2026": 121292.76,
+      "qty2026": 1237
+    },
+    {
+      "barcode": "6009646800481",
+      "description": "LITTLE HEROES VIRGIN TOILET PAPER LITE 48s",
+      "dept": "Household",
+      "supplier": "LANK SOFT (PTY) LTD ",
+      "sales2023": 197540.13435355146,
+      "sales2024": 73661.99872705506,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009663051156",
+      "description": "TOILET PAPER 2ply 350 sheets",
+      "dept": "Household",
+      "supplier": "ECONO TISSUE",
+      "sales2023": 151482.6157569181,
+      "sales2024": 22148.18028214867,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009803451938",
+      "description": "PINE GEL 5lt",
+      "dept": "Household",
+      "supplier": "Bio Elements (Pty) LTD",
+      "sales2023": 144502.74730317423,
+      "sales2024": 1933.7350612346916,
+      "sales2026": 39116.8,
+      "qty2026": 332
+    },
+    {
+      "barcode": "6009660948428",
+      "description": "WHEELIE BIN 240lt BLACK",
+      "dept": "Household",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 133423.1874986695,
+      "sales2024": 38339.996407663646,
+      "sales2026": 32199.36,
+      "qty2026": 46
+    },
+    {
+      "barcode": "6009661980984",
+      "description": "LITTLE HEROES 2ply 48s",
+      "dept": "Household",
+      "supplier": "LANK SOFT (PTY) LTD ",
+      "sales2023": 99611.956961643,
+      "sales2024": 43829.261063122925,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009537318439",
+      "description": "REFUSE BAG BLACK 750mm x 950mm 18mic",
+      "dept": "Household",
+      "supplier": "YUNG SHENG PLASTICS",
+      "sales2023": 91219.90021336521,
+      "sales2024": 30738.65986117038,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009648182704",
+      "description": "TOILET PAPER 1ply 500 sheets",
+      "dept": "Household",
+      "supplier": "NOVA PAPERS (PTY) LTD ",
+      "sales2023": 80083.62633163604,
+      "sales2024": 41768.68381447864,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009660949203",
+      "description": "CLIP & LOCK STORAGE BOXES 80lt CLEAR",
+      "dept": "Home n Kitchen",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 88464.45892694063,
+      "sales2024": 22116.114731735157,
+      "sales2026": 10052.64,
+      "qty2026": 42
+    },
+    {
+      "barcode": "6009652290054",
+      "description": "MULTIWRAP 300x300m",
+      "dept": "Home n Kitchen",
+      "supplier": "MULTIWRAP (PTY) LTD (M)",
+      "sales2023": 85887.16067472793,
+      "sales2024": 23996.28635792019,
+      "sales2026": 13089.06,
+      "qty2026": 77
+    },
+    {
+      "barcode": "6001246774940",
+      "description": "ROUGH TOTE 110lt BLACK",
+      "dept": "Home n Kitchen",
+      "supplier": "USABCO INDUSTRIES PTY LTD",
+      "sales2023": 65167.91810880829,
+      "sales2024": 0,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009696451251",
+      "description": "REFUSE BAG ON ROLL BLACK 18mic 750x950mm",
+      "dept": "Household",
+      "supplier": "YUNG SHENG PLASTICS",
+      "sales2023": 63610.771388419176,
+      "sales2024": 10633.966196243317,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009646808135",
+      "description": "PARTY PACKS",
+      "dept": "Party n Gifts",
+      "supplier": "ALRODE SOUTH DISTRIBUTORS",
+      "sales2023": 62547.09109396021,
+      "sales2024": 32817.80667563549,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009546777531",
+      "description": "WEST PACK KITCHEN TOWEL 2ply 2's",
+      "dept": "Household",
+      "supplier": "NOVA PAPERS (PTY) LTD ",
+      "sales2023": 60078.5907439838,
+      "sales2024": 96929.16141410531,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6001070103374",
+      "description": "FLAT FOLDED HAND TOWELS 1PLY 319",
+      "dept": "Household",
+      "supplier": "MAIN STREET 1310 T/A TWINSAVER GROUP",
+      "sales2023": 57225.59200183962,
+      "sales2024": 12660.529203946819,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009613780600",
+      "description": "REFUSE BAG HD BLACK 30mic 750x950mm",
+      "dept": "Household",
+      "supplier": "YUNG SHENG PLASTICS",
+      "sales2023": 52259.672467348384,
+      "sales2024": 34310.39276095981,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6002638014439",
+      "description": "STORAGE BOX 85lt CLEAR",
+      "dept": "Home n Kitchen",
+      "supplier": "EVERNU PLASTICS",
+      "sales2023": 51307.74144144144,
+      "sales2024": 15032.841441441442,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "2700000000304",
+      "description": "TOILET PAPER 2ply 200 SHEETS",
+      "dept": "Household",
+      "supplier": "NOVA PAPERS (PTY) LTD ",
+      "sales2023": 48190.641090555015,
+      "sales2024": 32216.33598831548,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009537348900",
+      "description": "PARTYGAS",
+      "dept": "Party n Gifts",
+      "supplier": "My Gas",
+      "sales2023": 130091.96989238526,
+      "sales2024": 94162.1781178212,
+      "sales2026": 82557.81,
+      "qty2026": 5504
+    },
+    {
+      "barcode": "6009646807398",
+      "description": "MULTIPURPOSE GARAGE ROLL 4kg",
+      "dept": "Household",
+      "supplier": "LANK SOFT (PTY) LTD ",
+      "sales2023": 45934.82172650879,
+      "sales2024": 13586.355721925134,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009608649769",
+      "description": "WESTPACK 2 QUIRE 192pg A4 COUNTER BOOKS F/M",
+      "dept": "Office n Stationary",
+      "supplier": "FREEDOM STATIONERY (PTY) LTD",
+      "sales2023": 44289.681429306576,
+      "sales2024": 47791.261417728034,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6001246607897",
+      "description": "WOMEN'S SHOE BOX 3pc",
+      "dept": "Home n Kitchen",
+      "supplier": "USABCO INDUSTRIES PTY LTD",
+      "sales2023": 43753.01398230089,
+      "sales2024": 4895.442123893806,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009646800221",
+      "description": "LANK SOFT TOILET PAPER UNWRAPPED RC",
+      "dept": "Household",
+      "supplier": "LANK SOFT (PTY) LTD ",
+      "sales2023": 43111.270054267385,
+      "sales2024": 21555.635027133692,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6004586000250",
+      "description": "KITTEN SOFT TOILET PAPER 48 ROLLS",
+      "dept": "Household",
+      "supplier": "UNIVERSAL TISSUES (UT)",
+      "sales2023": 42764.08506944444,
+      "sales2024": 0,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009830490702",
+      "description": "SKY CORE HANDWASHING POWDER 3kg",
+      "dept": "Household",
+      "supplier": "KT WASH DETERGENTS (PTY) LTD ",
+      "sales2023": 42004.941680395386,
+      "sales2024": 22264.91444261395,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009803451051",
+      "description": "DISHWASHING LIQUID 5lt",
+      "dept": "Household",
+      "supplier": "NATURES BEST MANUFACTURING CC ",
+      "sales2023": 41508.91144799055,
+      "sales2024": 0,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009537317173",
+      "description": "BUBBLE WRAP 1.25m x 100m",
+      "dept": "Home n Kitchen",
+      "supplier": "APLUS PACKAGING (GO)",
+      "sales2023": 43389.11109949423,
+      "sales2024": 42043.972400381615,
+      "sales2026": 2406.99,
+      "qty2026": 345
+    },
+    {
+      "barcode": "6009660949289",
+      "description": "CLIP & LOCK STORAGE BOXES 30lt CLEAR",
+      "dept": "Home n Kitchen",
+      "supplier": "Buzz Trading 104 (Pty) Ltd",
+      "sales2023": 63268.88703107019,
+      "sales2024": 14120.094959723821,
+      "sales2026": 22598.92,
+      "qty2026": 113
+    },
+    {
+      "barcode": "6002638014446",
+      "description": "UTILITY BIN 150lt BLACK",
+      "dept": "Home n Kitchen",
+      "supplier": "EVERNU PLASTICS",
+      "sales2023": 39810.39773761713,
+      "sales2024": 16363.783119143241,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009546753221",
+      "description": "CLEARANCE SALE 39.90",
+      "dept": "Other / Unmapped",
+      "supplier": "CLEARANCE (STOCK)",
+      "sales2023": 39254.20307321483,
+      "sales2024": 0,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009546769291",
+      "description": "PAPER PLATES LARGE 230mm PREPACK",
+      "dept": "Other / Unmapped",
+      "supplier": "WEST PACK LIFESTYLE (PTY) LTD T/A WEST PACK LIFESTYLE DISTRIBUTION CENTRE pack",
+      "sales2023": 38931.53531941415,
+      "sales2024": 26.234188220629477,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009546714864",
+      "description": "HANGERS 20pc ASSORTED",
+      "dept": "Household",
+      "supplier": "PALADIUM DISTRIBUTORS CC ",
+      "sales2023": 40682.30402591393,
+      "sales2024": 27975.48866265618,
+      "sales2026": 3089.49,
+      "qty2026": 54
+    },
+    {
+      "barcode": "6001878005221",
+      "description": "TRI PACK 200ml MIXED",
+      "dept": "Household",
+      "supplier": "Shield Chemicals (Pty) Ltd",
+      "sales2023": 38241.7536530833,
+      "sales2024": 15756.029787234042,
+      "sales2026": 1919.75,
+      "qty2026": 24
+    },
+    {
+      "barcode": "6009803451594",
+      "description": "ALL PURPOSE CLEANER 5lt",
+      "dept": "Household",
+      "supplier": "NATURES BEST MANUFACTURING CC ",
+      "sales2023": 36283.33147385103,
+      "sales2024": 0,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6001878011413",
+      "description": "FURNITURE POLISH 300ml TRIPLE PACK",
+      "dept": "Household",
+      "supplier": "Shield Chemicals (Pty) Ltd",
+      "sales2023": 36036.56056875,
+      "sales2024": 4177.12588125,
+      "sales2026": 1379.88,
+      "qty2026": 12
+    },
+    {
+      "barcode": "6009648183643",
+      "description": "TOILET PAPER 2ply 350 SHEETS",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 72409.96626663188,
+      "sales2024": 107114.56271154014,
+      "sales2026": 38118.07,
+      "qty2026": 261
+    },
+    {
+      "barcode": "6009696451800",
+      "description": "REFUSE BAG HD BLUE 30mic 750x950mm",
+      "dept": "Household",
+      "supplier": "YUNG SHENG PLASTICS",
+      "sales2023": 34052.81821697255,
+      "sales2024": 15999.00909017534,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6002638014484",
+      "description": "UTILITY BIN 150lt CLEAR",
+      "dept": "Home n Kitchen",
+      "supplier": "EVERNU PLASTICS",
+      "sales2023": 33693.691730205275,
+      "sales2024": 42438.61935483871,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6002638014477",
+      "description": "UTILITY BIN 150lt SILVER",
+      "dept": "Home n Kitchen",
+      "supplier": "EVERNU PLASTICS",
+      "sales2023": 33143.81020057306,
+      "sales2024": 3625.104240687679,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009608649806",
+      "description": "WESTPACK A4 EXAM PAD PUNCHED 100pg",
+      "dept": "Office n Stationary",
+      "supplier": "FREEDOM STATIONERY (PTY) LTD",
+      "sales2023": 32918.40663829787,
+      "sales2024": 0,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6001246665989",
+      "description": "ROUGH TOTE 150lt BLACK",
+      "dept": "Home n Kitchen",
+      "supplier": "USABCO INDUSTRIES PTY LTD",
+      "sales2023": 32791.497209302324,
+      "sales2024": 0,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6006985000039",
+      "description": "CRAZY POPS ORIGINAL 48pc",
+      "dept": "Party n Gifts",
+      "supplier": "Candicraze (Candico)  (PTY) Ltd ",
+      "sales2023": 38364.40462841204,
+      "sales2024": 13934.068792588165,
+      "sales2026": 5658.82,
+      "qty2026": 116
+    },
+    {
+      "barcode": "799439646940",
+      "description": "BRIQUETTES 4kg RED BAG",
+      "dept": "Sports n Outdoor",
+      "supplier": "WILDFIRE CHARCOAL",
+      "sales2023": 41776.68229773714,
+      "sales2024": 14424.840419249846,
+      "sales2026": 9423.19,
+      "qty2026": 216
+    },
+    {
+      "barcode": "6002923008730",
+      "description": "HOLA CHAIR BLACK RECYCLED",
+      "dept": "Sports n Outdoor",
+      "supplier": "RAND PLASTICS",
+      "sales2023": 30839.49449901768,
+      "sales2024": 14462.659489194499,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6955682800704",
+      "description": "CARBON STEEL CLOTH DRYER RACK GREY",
+      "dept": "Household",
+      "supplier": "FUNKI LINES WES200 ",
+      "sales2023": 30457.72645962733,
+      "sales2024": 6922.210559006211,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009537384403",
+      "description": "FOLDING PLASTIC TABLE 1860mm x 760mm",
+      "dept": "Sports n Outdoor",
+      "supplier": "FUNKI LINES WES200 ",
+      "sales2023": 29997.460430107527,
+      "sales2024": 1463.290752688172,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009613780594",
+      "description": "REFUSE BAG HD SMOKEY 30mic 750x950mm",
+      "dept": "Household",
+      "supplier": "YUNG SHENG PLASTICS",
+      "sales2023": 29762.38347169811,
+      "sales2024": 4393.638004922067,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009783682322",
+      "description": "ALEXIS CHAIR DUCK EGG BLUE",
+      "dept": "Sports n Outdoor",
+      "supplier": "BUZZ TRADING  HUNDRED AND FOUR CC",
+      "sales2023": 28979.522000000004,
+      "sales2024": 3763.5742857142855,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009646800610",
+      "description": "LANK SOFT 1x48's WRAPPED RECYCLE",
+      "dept": "Household",
+      "supplier": "LANK SOFT (PTY) LTD ",
+      "sales2023": 28933.382066508315,
+      "sales2024": 20968.574643705462,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "781718206211",
+      "description": "CHAFING FUEL 5lt",
+      "dept": "Sports n Outdoor",
+      "supplier": "FLAME CORPORATION",
+      "sales2023": 28873.3151345895,
+      "sales2024": 114.12377523553162,
+      "sales2026": 0,
+      "qty2026": 0
+    }
+  ],
+  "topPositiveGaps": [
+    {
+      "barcode": "6009648183216",
+      "description": "Nova T Tissue 350 Sh L Soft 2P V",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 61459.49,
+      "qty2026": 205
+    },
+    {
+      "barcode": "6009537317159",
+      "description": "BUBBLE WRAP 1.25m x 100m",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Trevor  Warren Packaging cc",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 53577.99,
+      "qty2026": 141
+    },
+    {
+      "barcode": "6009648183018",
+      "description": "NOVA JUMBO KITCHEN TOWEL 2ply 250 sheets",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 46190.29,
+      "qty2026": 1243
+    },
+    {
+      "barcode": "3202314239542",
+      "description": "Black Refuse Bag",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "VC Lifestyle 总仓库",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 45043.39,
+      "qty2026": 1813
+    },
+    {
+      "barcode": "6009711741268",
+      "description": "STORAGE BOX 110lt",
+      "dept": "Home n Kitchen",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 1125.8284980237154,
+      "sales2024": 30397.369446640314,
+      "sales2026": 42317.63,
+      "qty2026": 182
+    },
+    {
+      "barcode": "6009648183148",
+      "description": "NOVA KITCHEN TOWEL 2ply",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 38353.32,
+      "qty2026": 2513
+    },
+    {
+      "barcode": "6009711741275",
+      "description": "STORAGE BOX 150lt",
+      "dept": "Home n Kitchen",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 0,
+      "sales2024": 28510.025223880595,
+      "sales2026": 32198.89,
+      "qty2026": 92
+    },
+    {
+      "barcode": "6009537343097",
+      "description": "PINE GEL 5lt",
+      "dept": "Household",
+      "supplier": "Jordan Chemicals PTY LTD",
+      "sales2023": 4703.552727644772,
+      "sales2024": 102856.93606302435,
+      "sales2026": 32722.35,
+      "qty2026": 321
+    },
+    {
+      "barcode": "6009648182769",
+      "description": "UNWRAPPED TOILET PAPER RECYCLED",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 24793.91,
+      "qty2026": 124
+    },
+    {
+      "barcode": "6009648183537",
+      "description": "Nova T Tissue 200 Sh 2P V 24s Green",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 19979.59,
+      "qty2026": 200
+    },
+    {
+      "barcode": "6009660947261",
+      "description": "CLEAR STORAGE BOX 45lt CLEAR",
+      "dept": "Home n Kitchen",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 17420.312949308754,
+      "sales2024": 4772.688479262672,
+      "sales2026": 36038.08,
+      "qty2026": 170
+    },
+    {
+      "barcode": "6009783680113",
+      "description": "Heavy Duty Stackable Black Crate",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 15654.99,
+      "qty2026": 87
+    },
+    {
+      "barcode": "6009537317166",
+      "description": "BUBBLE WRAP 1.25m x 50m",
+      "dept": "Home n Kitchen",
+      "supplier": "Trevor  Warren Packaging cc",
+      "sales2023": 7456.786372712147,
+      "sales2024": 3441.5937104825293,
+      "sales2026": 22998.7,
+      "qty2026": 92
+    },
+    {
+      "barcode": "6009546748876",
+      "description": "THICK BLEACH 5lt",
+      "dept": "Household",
+      "supplier": "Bio Elements (Pty) LTD",
+      "sales2023": 3127.413350125945,
+      "sales2024": 2391.551385390428,
+      "sales2026": 17847.01,
+      "qty2026": 210
+    },
+    {
+      "barcode": "6001246695511",
+      "description": "CLEARLY NEAT CONTAINER 70lt",
+      "dept": "Home n Kitchen",
+      "supplier": "USABCO INDUSTRIES PTY LTD",
+      "sales2023": 2543.7875,
+      "sales2024": 1130.572222222222,
+      "sales2026": 16199.54,
+      "qty2026": 46
+    },
+    {
+      "barcode": "8694064004146",
+      "description": "MULTI BOX No5 30lt",
+      "dept": "Beauty n Personal Care",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 13499.63,
+      "qty2026": 46
+    },
+    {
+      "barcode": "6009537343011",
+      "description": "DISHWASH LIQUID 5lt",
+      "dept": "Household",
+      "supplier": "Jordan Chemicals PTY LTD",
+      "sales2023": 0,
+      "sales2024": 1852.349105691057,
+      "sales2026": 13455.88,
+      "qty2026": 273
+    },
+    {
+      "barcode": "6009880718924",
+      "description": "PETROL JERRY CAN 20lt RED",
+      "dept": "Home n Kitchen",
+      "supplier": "KOLOR WORLD PACKAGING (PTY) LTD",
+      "sales2023": 17295.86630434783,
+      "sales2024": 1235.4190217391306,
+      "sales2026": 30688.74,
+      "qty2026": 93
+    },
+    {
+      "barcode": "6932673752792",
+      "description": "DELI Mate Copy Paper A4-80g-5Pkgs",
+      "dept": "School n Office Supplies",
+      "supplier": "Deli South Africa (PTY) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 12672.74,
+      "qty2026": 158
+    },
+    {
+      "barcode": "906102900107",
+      "description": "Wash Line GS002",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "VC Lifestyle 总仓库",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 12099.53,
+      "qty2026": 44
+    },
+    {
+      "barcode": "6009537317135",
+      "description": "BUBBLE WRAP 416mm x 30m",
+      "dept": "Home n Kitchen",
+      "supplier": "Trevor  Warren Packaging cc",
+      "sales2023": 0,
+      "sales2024": 2182.9317739403455,
+      "sales2026": 11772.29,
+      "qty2026": 157
+    },
+    {
+      "barcode": "6009546741505",
+      "description": "VEGETABLE FOOD CONTAINER 19.8x13.3x11.4",
+      "dept": "Home n Kitchen",
+      "supplier": "FUNKI LINES WES010",
+      "sales2023": 692.8827860696517,
+      "sales2024": 3551.024278606965,
+      "sales2026": 11798.67,
+      "qty2026": 391
+    },
+    {
+      "barcode": "6009537313694",
+      "description": "W6 CARTON BOX",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Trevor  Warren Packaging cc",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 10849.68,
+      "qty2026": 31
+    },
+    {
+      "barcode": "6009648182165",
+      "description": "SUPA WIPES 170mm 3.2kg",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 4291.885156445557,
+      "sales2024": 20028.797396745933,
+      "sales2026": 15008.64,
+      "qty2026": 79
+    },
+    {
+      "barcode": "6009888505151",
+      "description": "WASHING POWDER BUCKET 10kg",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "KWALITY BRANDS AFRICA(PTY) LTD",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 10349.4,
+      "qty2026": 45
+    },
+    {
+      "barcode": "6009783680090",
+      "description": "Heavy Duty Stackable Red Crate",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 10199.29,
+      "qty2026": 68
+    },
+    {
+      "barcode": "6009537317111",
+      "description": "BUBBLE WRAP 416mm x 100m",
+      "dept": "Home n Kitchen",
+      "supplier": "Trevor  Warren Packaging cc",
+      "sales2023": 2270.19739039666,
+      "sales2024": 3071.443528183716,
+      "sales2026": 12239.14,
+      "qty2026": 72
+    },
+    {
+      "barcode": "6932673752808",
+      "description": "Deli A4 Printing and Copy Paper 80gsm – 5 Ream Value Pack (2500 Sheets)",
+      "dept": "School n Office Supplies",
+      "supplier": "Deli South Africa (PTY) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 9889.71,
+      "qty2026": 23
+    },
+    {
+      "barcode": "8694064005174",
+      "description": "MULTI BOX WITH WHEELS No7 40lt",
+      "dept": "Home n Kitchen",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 9867.76,
+      "qty2026": 21
+    },
+    {
+      "barcode": "6942233666742",
+      "description": "2 Quire 192 pages A4 Counter Books F_M",
+      "dept": "School n Office Supplies",
+      "supplier": "ValueCo Import n Export (PTY) LTD",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 9748.57,
+      "qty2026": 595
+    },
+    {
+      "barcode": "8694064009714",
+      "description": "RECTANGULAR MULTI BOX 10lt",
+      "dept": "Home n Kitchen",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 140.784,
+      "sales2024": 140.784,
+      "sales2026": 8834.77,
+      "qty2026": 52
+    },
+    {
+      "barcode": "6942233666766",
+      "description": "3 Quire  288 Pages A4 Counter Books F_M",
+      "dept": "School n Office Supplies",
+      "supplier": "ValueCo Import n Export (PTY) LTD",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 8529.55,
+      "qty2026": 237
+    },
+    {
+      "barcode": "6009648182216",
+      "description": "TOILET PAPER 1ply 500 sheets",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 8496.51,
+      "qty2026": 34
+    },
+    {
+      "barcode": "4897045788873",
+      "description": "UMBRELLA PETZONE LOGO",
+      "dept": "Home n Kitchen",
+      "supplier": "FUNKI LINES WES200 ",
+      "sales2023": 0,
+      "sales2024": 2015.1628000000003,
+      "sales2026": 8289.95,
+      "qty2026": 208
+    },
+    {
+      "barcode": "D0090009D10",
+      "description": "Lucky Dustbin 240L Black",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Direct",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 8249.75,
+      "qty2026": 15
+    },
+    {
+      "barcode": "6009648183544",
+      "description": "Nova T Tissue 200 Sh 2P V 24s Green",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 7599.52,
+      "qty2026": 38
+    },
+    {
+      "barcode": "6009648182608",
+      "description": "IMPI TIDY WIPES ROLL 200mm x750m 1.7kg",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 7559.35,
+      "qty2026": 63
+    },
+    {
+      "barcode": "6009660945328",
+      "description": "ALEXIS CHAIR BLACK",
+      "dept": "Sports n Outdoor",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 1018.1934375,
+      "sales2024": 0,
+      "sales2026": 8459.53,
+      "qty2026": 47
+    },
+    {
+      "barcode": "6009648183247",
+      "description": "FACIAL TISSUE 2ply 200 Sheets",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 65.97171039652791,
+      "sales2024": 4535.555089761294,
+      "sales2026": 7321.93,
+      "qty2026": 293
+    },
+    {
+      "barcode": "8694064004115",
+      "description": "MULTI BOX No2 13lt",
+      "dept": "Home n Kitchen",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 7214.63,
+      "qty2026": 37
+    },
+    {
+      "barcode": "010123241024",
+      "description": "Cloth Stand",
+      "dept": "HomeDecor Kitchen n Garden Supplies",
+      "supplier": "VC Lifestyle 总仓库",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 7199.9,
+      "qty2026": 18
+    },
+    {
+      "barcode": "8694064013148",
+      "description": "RECTANGULAR MULTI BOX 13lt",
+      "dept": "Home n Kitchen",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 6999.54,
+      "qty2026": 35
+    },
+    {
+      "barcode": "D0020002DD2",
+      "description": "Lucky Light Duty Chair color",
+      "dept": "HomeDecor Kitchen n Garden Supplies",
+      "supplier": "DXC General Trading (PTY) LTD",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 6999.29,
+      "qty2026": 89
+    },
+    {
+      "barcode": "6009537543213",
+      "description": "LAVENDER GEL 5lt",
+      "dept": "Household",
+      "supplier": "Jordan Chemicals PTY LTD",
+      "sales2023": 0,
+      "sales2024": 3825.8108192090394,
+      "sales2026": 6995.32,
+      "qty2026": 65
+    },
+    {
+      "barcode": "6009660942846",
+      "description": "STORAGE BOX 65lt Black",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "ValueCo Import n Export (PTY) LTD",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 6928.9,
+      "qty2026": 11
+    },
+    {
+      "barcode": "6009537343035",
+      "description": "AMMONIATED CLEANER 5lt",
+      "dept": "Household",
+      "supplier": "Jordan Chemicals PTY LTD",
+      "sales2023": 0,
+      "sales2024": 981.4730483271375,
+      "sales2026": 6718.54,
+      "qty2026": 112
+    },
+    {
+      "barcode": "6009696451497",
+      "description": "WOOD BAG N-PUNCH 40X70MM",
+      "dept": "Toys Games n Baby Products",
+      "supplier": "WEST RAND PACK 2",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 6717.74,
+      "qty2026": 44
+    },
+    {
+      "barcode": "6009648182875",
+      "description": "PREMIER TOILET PAPER 1ply 48s",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 38727.30867582971,
+      "sales2024": 7201.359051290647,
+      "sales2026": 45397.29,
+      "qty2026": 227
+    },
+    {
+      "barcode": "6009703710005",
+      "description": "ZIP LOCK BAGS 215x315mm 40mic",
+      "dept": "Home n Kitchen",
+      "supplier": "SIGN  SEAL TRADING 154 (PTY) LTD T/A PACKIT",
+      "sales2023": 4313.16960651289,
+      "sales2024": 2875.4464043419266,
+      "sales2026": 10978.33,
+      "qty2026": 122
+    },
+    {
+      "barcode": "8694064000728",
+      "description": "MULTI BOX JOCKER 8lt",
+      "dept": "Home n Kitchen",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 6664.56,
+      "qty2026": 43
+    }
+  ],
+  "supplierAnalysis": {
+    "biggestLosers": [
+      {
+        "name": "FORMOSA PLASTIC (FP)",
+        "sales2023": 893732.6065102656,
+        "sales2026": 6990.32,
+        "gap": -886742.2865102657
+      },
+      {
+        "name": "FUNKI LINES WES200 ",
+        "sales2023": 886968.5282089193,
+        "sales2026": 49501.10999999999,
+        "gap": -837467.4182089193
+      },
+      {
+        "name": "USABCO INDUSTRIES PTY LTD",
+        "sales2023": 1168365.0082172402,
+        "sales2026": 371137.7099999996,
+        "gap": -797227.2982172406
+      },
+      {
+        "name": "YUNG SHENG PLASTICS",
+        "sales2023": 698515.5485393216,
+        "sales2026": 0,
+        "gap": -698515.5485393216
+      },
+      {
+        "name": "WEST PACK LIFESTYLE (PTY) LTD T/A WEST PACK LIFESTYLE DISTRIBUTION CENTRE pack",
+        "sales2023": 638069.8481911229,
+        "sales2026": 35806.40999999999,
+        "gap": -602263.4381911228
+      },
+      {
+        "name": "FREEDOM STATIONERY (PTY) LTD",
+        "sales2023": 460169.63092367013,
+        "sales2026": 0,
+        "gap": -460169.63092367013
+      },
+      {
+        "name": "LANK SOFT (PTY) LTD ",
+        "sales2023": 448374.9305342183,
+        "sales2026": 0,
+        "gap": -448374.9305342183
+      },
+      {
+        "name": "FUNKI LINES (PTY) LTD (FL)",
+        "sales2023": 398001.28809194634,
+        "sales2026": 6475.76,
+        "gap": -391525.5280919463
+      },
+      {
+        "name": "BUZZ TRADING  HUNDRED AND FOUR CC",
+        "sales2023": 384341.86202367046,
+        "sales2026": 0,
+        "gap": -384341.86202367046
+      },
+      {
+        "name": "NATIONAL STATIONERY (PTY) (NS)",
+        "sales2023": 388303.8557796453,
+        "sales2026": 6354.549999999997,
+        "gap": -381949.30577964534
+      }
+    ],
+    "biggestGainers": [
+      {
+        "name": "Direct",
+        "sales2023": 0,
+        "sales2026": 612640.9499999959,
+        "gap": 612640.9499999959
+      },
+      {
+        "name": "VC Lifestyle 总仓库",
+        "sales2023": 0,
+        "sales2026": 504706.5099999969,
+        "gap": 504706.5099999969
+      },
+      {
+        "name": "Home Utility Distributors",
+        "sales2023": 10227.55374761204,
+        "sales2026": 249603.3199999998,
+        "gap": 239375.76625238775
+      },
+      {
+        "name": "C/Cloud Trading (MuchBetter) China Mall",
+        "sales2023": 0,
+        "sales2026": 223962.37000000017,
+        "gap": 223962.37000000017
+      },
+      {
+        "name": "Yiwu ValueCo Trading Co., Ltd",
+        "sales2023": 748.1044444444443,
+        "sales2026": 198874.84,
+        "gap": 198126.73555555556
+      },
+      {
+        "name": "Jordan Chemicals PTY LTD",
+        "sales2023": 21240.78733380081,
+        "sales2026": 139731.38000000006,
+        "gap": 118490.59266619926
+      },
+      {
+        "name": "F11 China Mall",
+        "sales2023": 0,
+        "sales2026": 107101.69,
+        "gap": 107101.69
+      },
+      {
+        "name": "B34/F09/F10C China Mall",
+        "sales2023": 0,
+        "sales2026": 105921.85000000002,
+        "gap": 105921.85000000002
+      },
+      {
+        "name": "Deli South Africa (PTY) Ltd",
+        "sales2023": 0,
+        "sales2026": 70141.05000000002,
+        "gap": 70141.05000000002
+      },
+      {
+        "name": "L228 Africa Shopping Centre",
+        "sales2023": 0,
+        "sales2026": 54997.76000000002,
+        "gap": 54997.76000000002
+      }
+    ]
+  }
+};
+
+    function switchTab(type) {
+        document.getElementById('negTable').style.display = type === 'neg' ? 'block' : 'none';
+        document.getElementById('posTable').style.display = type === 'pos' ? 'block' : 'none';
+        document.getElementById('supTable').style.display = type === 'sup' ? 'block' : 'none';
+        document.getElementById('btnNeg').classList.toggle('active', type === 'neg');
+        document.getElementById('btnPos').classList.toggle('active', type === 'pos');
+        document.getElementById('btnSup').classList.toggle('active', type === 'sup');
+    }
+
+    Chart.defaults.font.family = "'Nunito', sans-serif";
+    Chart.defaults.color = '#6e675e';
+
+    const depts = data.departmentAggregation
+        .filter(d => d.sales2023 > 120000 || d.sales2026 > 120000)
+        .sort((a,b) => b.sales2023 - a.sales2023)
+        .slice(0, 8);
+
+    new Chart(document.getElementById('mainChart'), {
+        type: 'bar',
+        data: {
+            labels: depts.map(d => d.name),
+            datasets: [
+                { label: 'Baseline', data: depts.map(d => d.sales2023), backgroundColor: 'rgba(110, 103, 94, 0.15)', borderColor: 'rgba(110, 103, 94, 0.4)', borderWidth: 1, borderRadius: 4 },
+                { label: 'Current', data: depts.map(d => d.sales2026), backgroundColor: '#8b4513', borderRadius: 4 }
+            ]
+        },
+        options: { 
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: { 
+                y: { grid: { color: 'rgba(230, 226, 216, 0.5)' }, border: { display: false } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+
+    const suppliersArr = data.supplierAnalysis.biggestLosers.slice(0, 20);
+    new Chart(document.getElementById('supplierChart'), {
+        type: 'bar',
+        data: {
+            labels: suppliersArr.map(s => s.name),
+            datasets: [
+                { label: 'Baseline', data: suppliersArr.map(s => s.sales2023), backgroundColor: 'rgba(110, 103, 94, 0.15)', borderColor: 'rgba(110, 103, 94, 0.4)', borderWidth: 1, borderRadius: 4 },
+                { label: 'Current', data: suppliersArr.map(s => s.sales2026), backgroundColor: '#a64b2a', borderRadius: 4 }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: true, labels: { color: '#6e675e', font: { family: "'Nunito', sans-serif" } } } },
+            scales: { 
+                y: { grid: { color: 'rgba(230, 226, 216, 0.5)' }, border: { display: false } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+
+    const populateTable = (tbodyId, items, isNeg) => {
+        const body = document.getElementById(tbodyId);
+        items.forEach(i => {
+            const row = document.createElement('tr');
+            const variance = i.sales2026 - i.sales2023;
+            
+            let pct = 0;
+            if (i.sales2023 > 0) {
+                pct = (variance / i.sales2023) * 100;
+            } else if (i.sales2026 > 0) {
+                pct = 100;
+            }
+            const pctText = i.sales2023 === 0 ? 'N/A' : (pct > 0 ? '+' : '') + pct.toFixed(1) + '%';
+
+            row.innerHTML = `
+                <td class="num">${i.barcode}</td>
+                <td style="font-weight: 500; color: var(--text-primary);">${i.description}</td>
+                <td>${i.dept || 'Unknown'}</td>
+                <td>${i.supplier}</td>
+                <td class="num">R${i.sales2023.toLocaleString(undefined, {maximumFractionDigits:0})}</td>
+                <td class="num">${(i.qty2023 || 0).toLocaleString()}</td>
+                <td class="num">R${i.sales2026.toLocaleString(undefined, {maximumFractionDigits:0})}</td>
+                <td class="num">${(i.qty2026 || 0).toLocaleString()}</td>
+                <td class="num ${isNeg ? 'neg' : 'pos'}">${isNeg ? '-' : '+'}R${Math.abs(variance).toLocaleString(undefined, {maximumFractionDigits:0})}</td>
+                <td class="num ${isNeg ? 'neg' : 'pos'}">${pctText}</td>
+            `;
+            body.appendChild(row);
+        });
+    };
+
+    populateTable('negTBody', data.topNegativeGaps, true);
+    populateTable('posTBody', data.topPositiveGaps, false);
+
+    const populateSupplierTable = (tbodyId, items, isNeg) => {
+        const body = document.getElementById(tbodyId);
+        items.forEach(i => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td style="font-weight: 500; color: var(--text-primary);">${i.name}</td>
+                <td class="num">R${i.sales2023.toLocaleString(undefined, {maximumFractionDigits:0})}</td>
+                <td class="num">R${i.sales2026.toLocaleString(undefined, {maximumFractionDigits:0})}</td>
+                <td class="num ${isNeg ? 'neg' : 'pos'}">${isNeg ? '-' : '+'}R${Math.abs(i.gap).toLocaleString(undefined, {maximumFractionDigits:0})}</td>
+            `;
+            body.appendChild(row);
+        });
+    };
+
+    populateSupplierTable('supNegTBody', data.supplierAnalysis.biggestLosers, true);
+    populateSupplierTable('supPosTBody', data.supplierAnalysis.biggestGainers, false);
+
+</script>
+</body>
+</html>

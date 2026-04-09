@@ -1,0 +1,1406 @@
+{
+  "metadata": {
+    "store": "VCL01 (Randburg)",
+    "generatedAt": "2026-04-09T14:05:21.138Z"
+  },
+  "departmentAggregation": [
+    {
+      "name": "HomeDecor Kitchen n Garden Supplies",
+      "sales2023": 36945.14559819887,
+      "sales2024": 21748.54547476273,
+      "sales2026": 978087.3299999875,
+      "gap": 941142.1844017886,
+      "pctChange": 2547.4041830482615
+    },
+    {
+      "name": "Home n Kitchen",
+      "sales2023": 6954054.994297616,
+      "sales2024": 3645457.08195305,
+      "sales2026": 1179478.3999999964,
+      "gap": -5774576.59429762,
+      "pctChange": -83.03898371572875
+    },
+    {
+      "name": "Party n Gifts",
+      "sales2023": 2703314.1452399236,
+      "sales2024": 1206511.347554078,
+      "sales2026": 652107.3299999932,
+      "gap": -2051206.8152399305,
+      "pctChange": -75.87748611650468
+    },
+    {
+      "name": "School n Office Supplies",
+      "sales2023": 647.6425059718545,
+      "sales2024": 532.8153115639257,
+      "sales2026": 537439.1399999973,
+      "gap": 536791.4974940255,
+      "pctChange": 82883.92014797028
+    },
+    {
+      "name": "Food Beverage n Tobacco related products",
+      "sales2023": 14918.497747909703,
+      "sales2024": 5080.171521932983,
+      "sales2026": 80116.52000000003,
+      "gap": 65198.02225209033,
+      "pctChange": 437.0280664567954
+    },
+    {
+      "name": "Sports n Outdoor",
+      "sales2023": 1169401.9341415248,
+      "sales2024": 522009.84651467,
+      "sales2026": 157134.18000000002,
+      "gap": -1012267.7541415248,
+      "pctChange": -86.56285957698928
+    },
+    {
+      "name": "Clothing Footwear Bags n Accessories",
+      "sales2023": 248.53552631578947,
+      "sales2024": 14.619736842105262,
+      "sales2026": 123317.65000000008,
+      "gap": 123069.1144736843,
+      "pctChange": 49517.71535362416
+    },
+    {
+      "name": "Other / Unmapped",
+      "sales2023": 1104226.7059315918,
+      "sales2024": 488619.5156379808,
+      "sales2026": 0,
+      "gap": -1104226.7059315918,
+      "pctChange": -100
+    },
+    {
+      "name": "Toys Games n Baby Products",
+      "sales2023": 1109628.452966923,
+      "sales2024": 458439.3739803688,
+      "sales2026": 264300.0099999998,
+      "gap": -845328.4429669231,
+      "pctChange": -76.18121549665433
+    },
+    {
+      "name": "Beauty n Personal Care",
+      "sales2023": 154764.298439715,
+      "sales2024": 57186.901364906385,
+      "sales2026": 88907.42000000001,
+      "gap": -65856.87843971499,
+      "pctChange": -42.553017138747975
+    },
+    {
+      "name": "Office n Stationary",
+      "sales2023": 2062426.0618160272,
+      "sales2024": 1124806.764820352,
+      "sales2026": 129161.32999999986,
+      "gap": -1933264.7318160273,
+      "pctChange": -93.73740797833648
+    },
+    {
+      "name": "Tools n Home Implement",
+      "sales2023": 573.1821428571428,
+      "sales2024": 343.90928571428566,
+      "sales2026": 112692.81000000019,
+      "gap": 112119.62785714304,
+      "pctChange": 19560.907340598573
+    },
+    {
+      "name": "Vehicle Supplies",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 28991.570000000007,
+      "gap": 28991.570000000007,
+      "pctChange": 0
+    },
+    {
+      "name": "Household",
+      "sales2023": 4942804.610552853,
+      "sales2024": 2571348.160443458,
+      "sales2026": 1131395.359999998,
+      "gap": -3811409.250552855,
+      "pctChange": -77.11025522666874
+    },
+    {
+      "name": "Hardware",
+      "sales2023": 259806.13259815192,
+      "sales2024": 79757.25533462167,
+      "sales2026": 10909.579999999998,
+      "gap": -248896.55259815193,
+      "pctChange": -95.80087664178656
+    },
+    {
+      "name": "Pet Supplies",
+      "sales2023": 6947.9900523705855,
+      "sales2024": 3935.1898370827284,
+      "sales2026": 30743.890000000018,
+      "gap": 23795.899947629434,
+      "pctChange": 342.4860969613868
+    },
+    {
+      "name": "Houseware Groceries n Daily Necessities",
+      "sales2023": 2199.2177337893963,
+      "sales2024": 3423.849463247239,
+      "sales2026": 825672.4699999966,
+      "gap": 823473.2522662072,
+      "pctChange": 37443.91651695663
+    },
+    {
+      "name": "Nonsale Material",
+      "sales2023": 18694.955533807824,
+      "sales2024": 202.7595837127618,
+      "sales2026": 1538.25,
+      "gap": -17156.705533807824,
+      "pctChange": -91.77184456406842
+    },
+    {
+      "name": "Electronic Products",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 99305.77000000009,
+      "gap": 99305.77000000009,
+      "pctChange": 0
+    },
+    {
+      "name": "Health n Household",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 300,
+      "gap": 300,
+      "pctChange": 0
+    },
+    {
+      "name": "Products to be classified",
+      "sales2023": 0,
+      "sales2024": 0,
+      "sales2026": 29.98,
+      "gap": 29.98,
+      "pctChange": 0
+    }
+  ],
+  "topNegativeGaps": [
+    {
+      "barcode": "6009648183117",
+      "description": "WEST PACK TOILET PAPER 2ply 18's",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 385560.77276067855,
+      "sales2024": 201824.40450682436,
+      "qty2023": 4455,
+      "sales2026": 121292.76,
+      "qty2026": 1237
+    },
+    {
+      "barcode": "6009646800481",
+      "description": "LITTLE HEROES VIRGIN TOILET PAPER LITE 48s",
+      "dept": "Household",
+      "supplier": "LANK SOFT (PTY) LTD ",
+      "sales2023": 197540.13435355146,
+      "sales2024": 73661.99872705506,
+      "qty2023": 54192,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009663051156",
+      "description": "TOILET PAPER 2ply 350 sheets",
+      "dept": "Household",
+      "supplier": "ECONO TISSUE",
+      "sales2023": 151482.6157569181,
+      "sales2024": 22148.18028214867,
+      "qty2023": 26592,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009803451938",
+      "description": "PINE GEL 5lt",
+      "dept": "Household",
+      "supplier": "Bio Elements (Pty) LTD",
+      "sales2023": 144502.74730317423,
+      "sales2024": 1933.7350612346916,
+      "qty2023": 1644,
+      "sales2026": 39116.8,
+      "qty2026": 332
+    },
+    {
+      "barcode": "6009660948428",
+      "description": "WHEELIE BIN 240lt BLACK",
+      "dept": "Household",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 133423.1874986695,
+      "sales2024": 38339.996407663646,
+      "qty2023": 261,
+      "sales2026": 32199.36,
+      "qty2026": 46
+    },
+    {
+      "barcode": "6009661980984",
+      "description": "LITTLE HEROES 2ply 48s",
+      "dept": "Household",
+      "supplier": "LANK SOFT (PTY) LTD ",
+      "sales2023": 99611.956961643,
+      "sales2024": 43829.261063122925,
+      "qty2023": 20400,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009537318439",
+      "description": "REFUSE BAG BLACK 750mm x 950mm 18mic",
+      "dept": "Household",
+      "supplier": "YUNG SHENG PLASTICS",
+      "sales2023": 91219.90021336521,
+      "sales2024": 30738.65986117038,
+      "qty2023": 104400,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009648182704",
+      "description": "TOILET PAPER 1ply 500 sheets",
+      "dept": "Household",
+      "supplier": "NOVA PAPERS (PTY) LTD ",
+      "sales2023": 80083.62633163604,
+      "sales2024": 41768.68381447864,
+      "qty2023": 17808,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009660949203",
+      "description": "CLIP & LOCK STORAGE BOXES 80lt CLEAR",
+      "dept": "Home n Kitchen",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 88464.45892694063,
+      "sales2024": 22116.114731735157,
+      "qty2023": 412,
+      "sales2026": 10052.64,
+      "qty2026": 42
+    },
+    {
+      "barcode": "6009652290054",
+      "description": "MULTIWRAP 300x300m",
+      "dept": "Home n Kitchen",
+      "supplier": "MULTIWRAP (PTY) LTD (M)",
+      "sales2023": 85887.16067472793,
+      "sales2024": 23996.28635792019,
+      "qty2023": 791,
+      "sales2026": 13089.06,
+      "qty2026": 77
+    },
+    {
+      "barcode": "6001246774940",
+      "description": "ROUGH TOTE 110lt BLACK",
+      "dept": "Home n Kitchen",
+      "supplier": "USABCO INDUSTRIES PTY LTD",
+      "sales2023": 65167.91810880829,
+      "sales2024": 0,
+      "qty2023": 341,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009696451251",
+      "description": "REFUSE BAG ON ROLL BLACK 18mic 750x950mm",
+      "dept": "Household",
+      "supplier": "YUNG SHENG PLASTICS",
+      "sales2023": 63610.771388419176,
+      "sales2024": 10633.966196243317,
+      "qty2023": 72500,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009646808135",
+      "description": "PARTY PACKS",
+      "dept": "Party n Gifts",
+      "supplier": "ALRODE SOUTH DISTRIBUTORS",
+      "sales2023": 62547.09109396021,
+      "sales2024": 32817.80667563549,
+      "qty2023": 3463,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009546777531",
+      "description": "WEST PACK KITCHEN TOWEL 2ply 2's",
+      "dept": "Household",
+      "supplier": "NOVA PAPERS (PTY) LTD ",
+      "sales2023": 60078.5907439838,
+      "sales2024": 96929.16141410531,
+      "qty2023": 4397,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6001070103374",
+      "description": "FLAT FOLDED HAND TOWELS 1PLY 319",
+      "dept": "Household",
+      "supplier": "MAIN STREET 1310 T/A TWINSAVER GROUP",
+      "sales2023": 57225.59200183962,
+      "sales2024": 12660.529203946819,
+      "qty2023": 282500,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009613780600",
+      "description": "REFUSE BAG HD BLACK 30mic 750x950mm",
+      "dept": "Household",
+      "supplier": "YUNG SHENG PLASTICS",
+      "sales2023": 52259.672467348384,
+      "sales2024": 34310.39276095981,
+      "qty2023": 34880,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6002638014439",
+      "description": "STORAGE BOX 85lt CLEAR",
+      "dept": "Home n Kitchen",
+      "supplier": "EVERNU PLASTICS",
+      "sales2023": 51307.74144144144,
+      "sales2024": 15032.841441441442,
+      "qty2023": 314,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "2700000000304",
+      "description": "TOILET PAPER 2ply 200 SHEETS",
+      "dept": "Household",
+      "supplier": "NOVA PAPERS (PTY) LTD ",
+      "sales2023": 48190.641090555015,
+      "sales2024": 32216.33598831548,
+      "qty2023": 12960,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009537348900",
+      "description": "PARTYGAS",
+      "dept": "Party n Gifts",
+      "supplier": "My Gas",
+      "sales2023": 130091.96989238526,
+      "sales2024": 94162.1781178212,
+      "qty2023": 13346,
+      "sales2026": 82557.81,
+      "qty2026": 5504
+    },
+    {
+      "barcode": "6009646807398",
+      "description": "MULTIPURPOSE GARAGE ROLL 4kg",
+      "dept": "Household",
+      "supplier": "LANK SOFT (PTY) LTD ",
+      "sales2023": 45934.82172650879,
+      "sales2024": 13586.355721925134,
+      "qty2023": 213,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009608649769",
+      "description": "WESTPACK 2 QUIRE 192pg A4 COUNTER BOOKS F/M",
+      "dept": "Office n Stationary",
+      "supplier": "FREEDOM STATIONERY (PTY) LTD",
+      "sales2023": 44289.681429306576,
+      "sales2024": 47791.261417728034,
+      "qty2023": 2087,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6001246607897",
+      "description": "WOMEN'S SHOE BOX 3pc",
+      "dept": "Home n Kitchen",
+      "supplier": "USABCO INDUSTRIES PTY LTD",
+      "sales2023": 43753.01398230089,
+      "sales2024": 4895.442123893806,
+      "qty2023": 286,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009646800221",
+      "description": "LANK SOFT TOILET PAPER UNWRAPPED RC",
+      "dept": "Household",
+      "supplier": "LANK SOFT (PTY) LTD ",
+      "sales2023": 43111.270054267385,
+      "sales2024": 21555.635027133692,
+      "qty2023": 13632,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6004586000250",
+      "description": "KITTEN SOFT TOILET PAPER 48 ROLLS",
+      "dept": "Household",
+      "supplier": "UNIVERSAL TISSUES (UT)",
+      "sales2023": 42764.08506944444,
+      "sales2024": 0,
+      "qty2023": 7920,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009830490702",
+      "description": "SKY CORE HANDWASHING POWDER 3kg",
+      "dept": "Household",
+      "supplier": "KT WASH DETERGENTS (PTY) LTD ",
+      "sales2023": 42004.941680395386,
+      "sales2024": 22264.91444261395,
+      "qty2023": 732,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009803451051",
+      "description": "DISHWASHING LIQUID 5lt",
+      "dept": "Household",
+      "supplier": "NATURES BEST MANUFACTURING CC ",
+      "sales2023": 41508.91144799055,
+      "sales2024": 0,
+      "qty2023": 727,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009537317173",
+      "description": "BUBBLE WRAP 1.25m x 100m",
+      "dept": "Home n Kitchen",
+      "supplier": "APLUS PACKAGING (GO)",
+      "sales2023": 43389.11109949423,
+      "sales2024": 42043.972400381615,
+      "qty2023": 142.25,
+      "sales2026": 2406.99,
+      "qty2026": 345
+    },
+    {
+      "barcode": "6009660949289",
+      "description": "CLIP & LOCK STORAGE BOXES 30lt CLEAR",
+      "dept": "Home n Kitchen",
+      "supplier": "Buzz Trading 104 (Pty) Ltd",
+      "sales2023": 63268.88703107019,
+      "sales2024": 14120.094959723821,
+      "qty2023": 466,
+      "sales2026": 22598.92,
+      "qty2026": 113
+    },
+    {
+      "barcode": "6002638014446",
+      "description": "UTILITY BIN 150lt BLACK",
+      "dept": "Home n Kitchen",
+      "supplier": "EVERNU PLASTICS",
+      "sales2023": 39810.39773761713,
+      "sales2024": 16363.783119143241,
+      "qty2023": 163,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009546753221",
+      "description": "CLEARANCE SALE 39.90",
+      "dept": "Other / Unmapped",
+      "supplier": "CLEARANCE (STOCK)",
+      "sales2023": 39254.20307321483,
+      "sales2024": 0,
+      "qty2023": 1625,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009546769291",
+      "description": "PAPER PLATES LARGE 230mm PREPACK",
+      "dept": "Other / Unmapped",
+      "supplier": "WEST PACK LIFESTYLE (PTY) LTD T/A WEST PACK LIFESTYLE DISTRIBUTION CENTRE pack",
+      "sales2023": 38931.53531941415,
+      "sales2024": 26.234188220629477,
+      "qty2023": 74200,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009546714864",
+      "description": "HANGERS 20pc ASSORTED",
+      "dept": "Household",
+      "supplier": "PALADIUM DISTRIBUTORS CC ",
+      "sales2023": 40682.30402591393,
+      "sales2024": 27975.48866265618,
+      "qty2023": 794,
+      "sales2026": 3089.49,
+      "qty2026": 54
+    },
+    {
+      "barcode": "6001878005221",
+      "description": "TRI PACK 200ml MIXED",
+      "dept": "Household",
+      "supplier": "Shield Chemicals (Pty) Ltd",
+      "sales2023": 38241.7536530833,
+      "sales2024": 15756.029787234042,
+      "qty2023": 716,
+      "sales2026": 1919.75,
+      "qty2026": 24
+    },
+    {
+      "barcode": "6009803451594",
+      "description": "ALL PURPOSE CLEANER 5lt",
+      "dept": "Household",
+      "supplier": "NATURES BEST MANUFACTURING CC ",
+      "sales2023": 36283.33147385103,
+      "sales2024": 0,
+      "qty2023": 479,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6001878011413",
+      "description": "FURNITURE POLISH 300ml TRIPLE PACK",
+      "dept": "Household",
+      "supplier": "Shield Chemicals (Pty) Ltd",
+      "sales2023": 36036.56056875,
+      "sales2024": 4177.12588125,
+      "qty2023": 509,
+      "sales2026": 1379.88,
+      "qty2026": 12
+    },
+    {
+      "barcode": "6009648183643",
+      "description": "TOILET PAPER 2ply 350 SHEETS",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 72409.96626663188,
+      "sales2024": 107114.56271154014,
+      "qty2023": 13320,
+      "sales2026": 38118.07,
+      "qty2026": 261
+    },
+    {
+      "barcode": "6009696451800",
+      "description": "REFUSE BAG HD BLUE 30mic 750x950mm",
+      "dept": "Household",
+      "supplier": "YUNG SHENG PLASTICS",
+      "sales2023": 34052.81821697255,
+      "sales2024": 15999.00909017534,
+      "qty2023": 21080,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6002638014484",
+      "description": "UTILITY BIN 150lt CLEAR",
+      "dept": "Home n Kitchen",
+      "supplier": "EVERNU PLASTICS",
+      "sales2023": 33693.691730205275,
+      "sales2024": 42438.61935483871,
+      "qty2023": 131,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6002638014477",
+      "description": "UTILITY BIN 150lt SILVER",
+      "dept": "Home n Kitchen",
+      "supplier": "EVERNU PLASTICS",
+      "sales2023": 33143.81020057306,
+      "sales2024": 3625.104240687679,
+      "qty2023": 128,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009608649806",
+      "description": "WESTPACK A4 EXAM PAD PUNCHED 100pg",
+      "dept": "Office n Stationary",
+      "supplier": "FREEDOM STATIONERY (PTY) LTD",
+      "sales2023": 32918.40663829787,
+      "sales2024": 0,
+      "qty2023": 2118,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6001246665989",
+      "description": "ROUGH TOTE 150lt BLACK",
+      "dept": "Home n Kitchen",
+      "supplier": "USABCO INDUSTRIES PTY LTD",
+      "sales2023": 32791.497209302324,
+      "sales2024": 0,
+      "qty2023": 93,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6006985000039",
+      "description": "CRAZY POPS ORIGINAL 48pc",
+      "dept": "Party n Gifts",
+      "supplier": "Candicraze (Candico)  (PTY) Ltd ",
+      "sales2023": 38364.40462841204,
+      "sales2024": 13934.068792588165,
+      "qty2023": 1049,
+      "sales2026": 5658.82,
+      "qty2026": 116
+    },
+    {
+      "barcode": "799439646940",
+      "description": "BRIQUETTES 4kg RED BAG",
+      "dept": "Sports n Outdoor",
+      "supplier": "WILDFIRE CHARCOAL",
+      "sales2023": 41776.68229773714,
+      "sales2024": 14424.840419249846,
+      "qty2023": 1283,
+      "sales2026": 9423.19,
+      "qty2026": 216
+    },
+    {
+      "barcode": "6002923008730",
+      "description": "HOLA CHAIR BLACK RECYCLED",
+      "dept": "Sports n Outdoor",
+      "supplier": "RAND PLASTICS",
+      "sales2023": 30839.49449901768,
+      "sales2024": 14462.659489194499,
+      "qty2023": 435,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6955682800704",
+      "description": "CARBON STEEL CLOTH DRYER RACK GREY",
+      "dept": "Household",
+      "supplier": "FUNKI LINES WES200 ",
+      "sales2023": 30457.72645962733,
+      "sales2024": 6922.210559006211,
+      "qty2023": 44,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009537384403",
+      "description": "FOLDING PLASTIC TABLE 1860mm x 760mm",
+      "dept": "Sports n Outdoor",
+      "supplier": "FUNKI LINES WES200 ",
+      "sales2023": 29997.460430107527,
+      "sales2024": 1463.290752688172,
+      "qty2023": 41,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009613780594",
+      "description": "REFUSE BAG HD SMOKEY 30mic 750x950mm",
+      "dept": "Household",
+      "supplier": "YUNG SHENG PLASTICS",
+      "sales2023": 29762.38347169811,
+      "sales2024": 4393.638004922067,
+      "qty2023": 19780,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009783682322",
+      "description": "ALEXIS CHAIR DUCK EGG BLUE",
+      "dept": "Sports n Outdoor",
+      "supplier": "BUZZ TRADING  HUNDRED AND FOUR CC",
+      "sales2023": 28979.522000000004,
+      "sales2024": 3763.5742857142855,
+      "qty2023": 154,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "6009646800610",
+      "description": "LANK SOFT 1x48's WRAPPED RECYCLE",
+      "dept": "Household",
+      "supplier": "LANK SOFT (PTY) LTD ",
+      "sales2023": 28933.382066508315,
+      "sales2024": 20968.574643705462,
+      "qty2023": 8544,
+      "sales2026": 0,
+      "qty2026": 0
+    },
+    {
+      "barcode": "781718206211",
+      "description": "CHAFING FUEL 5lt",
+      "dept": "Sports n Outdoor",
+      "supplier": "FLAME CORPORATION",
+      "sales2023": 28873.3151345895,
+      "sales2024": 114.12377523553162,
+      "qty2023": 253,
+      "sales2026": 0,
+      "qty2026": 0
+    }
+  ],
+  "topPositiveGaps": [
+    {
+      "barcode": "6009537317159",
+      "description": "BUBBLE WRAP 1.25m x 100m",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Trevor  Warren Packaging cc",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 53577.99,
+      "qty2026": 141
+    },
+    {
+      "barcode": "6009648183018",
+      "description": "NOVA JUMBO KITCHEN TOWEL 2ply 250 sheets",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 46190.29,
+      "qty2026": 1243
+    },
+    {
+      "barcode": "3202314239542",
+      "description": "Black Refuse Bag",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "VC Lifestyle 总仓库",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 45043.39,
+      "qty2026": 1813
+    },
+    {
+      "barcode": "6009711741268",
+      "description": "STORAGE BOX 110lt",
+      "dept": "Home n Kitchen",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 1125.8284980237154,
+      "sales2024": 30397.369446640314,
+      "qty2023": 6,
+      "sales2026": 42317.63,
+      "qty2026": 182
+    },
+    {
+      "barcode": "6009648183148",
+      "description": "NOVA KITCHEN TOWEL 2ply",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 38353.32,
+      "qty2026": 2513
+    },
+    {
+      "barcode": "6009711741275",
+      "description": "STORAGE BOX 150lt",
+      "dept": "Home n Kitchen",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 0,
+      "sales2024": 28510.025223880595,
+      "qty2023": 0,
+      "sales2026": 32198.89,
+      "qty2026": 92
+    },
+    {
+      "barcode": "6009648183216",
+      "description": "TOILET PAPER 2ply 350 SHEETS",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 28711.43,
+      "qty2026": 96
+    },
+    {
+      "barcode": "6009537343097",
+      "description": "PINE GEL 5lt",
+      "dept": "Household",
+      "supplier": "Jordan Chemicals PTY LTD",
+      "sales2023": 4703.552727644772,
+      "sales2024": 102856.93606302435,
+      "qty2023": 53,
+      "sales2026": 32722.35,
+      "qty2026": 321
+    },
+    {
+      "barcode": "6009648182769",
+      "description": "UNWRAPPED TOILET PAPER RECYCLED",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 24793.91,
+      "qty2026": 124
+    },
+    {
+      "barcode": "6009648183537",
+      "description": "Nova T Tissue 200 Sh 2P V 24s Green",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 19979.59,
+      "qty2026": 200
+    },
+    {
+      "barcode": "6009660947261",
+      "description": "CLEAR STORAGE BOX 45lt CLEAR",
+      "dept": "Home n Kitchen",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 17420.312949308754,
+      "sales2024": 4772.688479262672,
+      "qty2023": 146,
+      "sales2026": 36038.08,
+      "qty2026": 170
+    },
+    {
+      "barcode": "6009783680113",
+      "description": "Heavy Duty Stackable Black Crate",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 15654.99,
+      "qty2026": 87
+    },
+    {
+      "barcode": "6009537317166",
+      "description": "BUBBLE WRAP 1.25m x 50m",
+      "dept": "Home n Kitchen",
+      "supplier": "Trevor  Warren Packaging cc",
+      "sales2023": 7456.786372712147,
+      "sales2024": 3441.5937104825293,
+      "qty2023": 39,
+      "sales2026": 22998.7,
+      "qty2026": 92
+    },
+    {
+      "barcode": "6009546748876",
+      "description": "THICK BLEACH 5lt",
+      "dept": "Household",
+      "supplier": "Bio Elements (Pty) LTD",
+      "sales2023": 3127.413350125945,
+      "sales2024": 2391.551385390428,
+      "qty2023": 51,
+      "sales2026": 17847.01,
+      "qty2026": 210
+    },
+    {
+      "barcode": "6001246695511",
+      "description": "CLEARLY NEAT CONTAINER 70lt",
+      "dept": "Home n Kitchen",
+      "supplier": "USABCO INDUSTRIES PTY LTD",
+      "sales2023": 2543.7875,
+      "sales2024": 1130.572222222222,
+      "qty2023": 9,
+      "sales2026": 16199.54,
+      "qty2026": 46
+    },
+    {
+      "barcode": "8694064004146",
+      "description": "MULTI BOX No5 30lt",
+      "dept": "Beauty n Personal Care",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 13499.63,
+      "qty2026": 46
+    },
+    {
+      "barcode": "6009537343011",
+      "description": "DISHWASH LIQUID 5lt",
+      "dept": "Household",
+      "supplier": "Jordan Chemicals PTY LTD",
+      "sales2023": 0,
+      "sales2024": 1852.349105691057,
+      "qty2023": 0,
+      "sales2026": 13455.88,
+      "qty2026": 273
+    },
+    {
+      "barcode": "6009880718924",
+      "description": "PETROL JERRY CAN 20lt RED",
+      "dept": "Home n Kitchen",
+      "supplier": "KOLOR WORLD PACKAGING (PTY) LTD",
+      "sales2023": 17295.86630434783,
+      "sales2024": 1235.4190217391306,
+      "qty2023": 70,
+      "sales2026": 30688.74,
+      "qty2026": 93
+    },
+    {
+      "barcode": "6932673752792",
+      "description": "DELI Mate Copy Paper A4-80g-5Pkgs",
+      "dept": "School n Office Supplies",
+      "supplier": "Deli South Africa (PTY) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 12672.74,
+      "qty2026": 158
+    },
+    {
+      "barcode": "906102900107",
+      "description": "Wash Line GS002",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "VC Lifestyle 总仓库",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 12099.53,
+      "qty2026": 44
+    },
+    {
+      "barcode": "6009537317135",
+      "description": "BUBBLE WRAP 416mm x 30m",
+      "dept": "Home n Kitchen",
+      "supplier": "Trevor  Warren Packaging cc",
+      "sales2023": 0,
+      "sales2024": 2182.9317739403455,
+      "qty2023": 0,
+      "sales2026": 11772.29,
+      "qty2026": 157
+    },
+    {
+      "barcode": "6009546741505",
+      "description": "VEGETABLE FOOD CONTAINER 19.8x13.3x11.4",
+      "dept": "Home n Kitchen",
+      "supplier": "FUNKI LINES WES010",
+      "sales2023": 692.8827860696517,
+      "sales2024": 3551.024278606965,
+      "qty2023": 8,
+      "sales2026": 11798.67,
+      "qty2026": 391
+    },
+    {
+      "barcode": "6009648182165",
+      "description": "SUPA WIPES 170mm 3.2kg",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 4291.885156445557,
+      "sales2024": 20028.797396745933,
+      "qty2023": 24,
+      "sales2026": 15008.64,
+      "qty2026": 79
+    },
+    {
+      "barcode": "6009888505151",
+      "description": "WASHING POWDER BUCKET 10kg",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "KWALITY BRANDS AFRICA(PTY) LTD",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 10349.4,
+      "qty2026": 45
+    },
+    {
+      "barcode": "6009783680090",
+      "description": "Heavy Duty Stackable Red Crate",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 10199.29,
+      "qty2026": 68
+    },
+    {
+      "barcode": "6009537317111",
+      "description": "BUBBLE WRAP 416mm x 100m",
+      "dept": "Home n Kitchen",
+      "supplier": "Trevor  Warren Packaging cc",
+      "sales2023": 2270.19739039666,
+      "sales2024": 3071.443528183716,
+      "qty2023": 17,
+      "sales2026": 12239.14,
+      "qty2026": 72
+    },
+    {
+      "barcode": "6932673752808",
+      "description": "Deli A4 Printing and Copy Paper 80gsm – 5 Ream Value Pack (2500 Sheets)",
+      "dept": "School n Office Supplies",
+      "supplier": "Deli South Africa (PTY) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 9889.71,
+      "qty2026": 23
+    },
+    {
+      "barcode": "8694064005174",
+      "description": "MULTI BOX WITH WHEELS No7 40lt",
+      "dept": "Home n Kitchen",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 9867.76,
+      "qty2026": 21
+    },
+    {
+      "barcode": "6942233666742",
+      "description": "2 Quire 192 pages A4 Counter Books F_M",
+      "dept": "School n Office Supplies",
+      "supplier": "ValueCo Import n Export (PTY) LTD",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 9748.57,
+      "qty2026": 595
+    },
+    {
+      "barcode": "8694064009714",
+      "description": "RECTANGULAR MULTI BOX 10lt",
+      "dept": "Home n Kitchen",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 140.784,
+      "sales2024": 140.784,
+      "qty2023": 1,
+      "sales2026": 8834.77,
+      "qty2026": 52
+    },
+    {
+      "barcode": "6942233666766",
+      "description": "3 Quire  288 Pages A4 Counter Books F_M",
+      "dept": "School n Office Supplies",
+      "supplier": "ValueCo Import n Export (PTY) LTD",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 8529.55,
+      "qty2026": 237
+    },
+    {
+      "barcode": "6009648182216",
+      "description": "TOILET PAPER 1ply 500 sheets",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 8496.51,
+      "qty2026": 34
+    },
+    {
+      "barcode": "4897045788873",
+      "description": "UMBRELLA PETZONE LOGO",
+      "dept": "Home n Kitchen",
+      "supplier": "FUNKI LINES WES200 ",
+      "sales2023": 0,
+      "sales2024": 2015.1628000000003,
+      "qty2023": 0,
+      "sales2026": 8289.95,
+      "qty2026": 208
+    },
+    {
+      "barcode": "D0090009D10",
+      "description": "Lucky Dustbin 240L Black",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Direct",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 8249.75,
+      "qty2026": 15
+    },
+    {
+      "barcode": "6009648183544",
+      "description": "Nova T Tissue 200 Sh 2P V 24s Green",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 7599.52,
+      "qty2026": 38
+    },
+    {
+      "barcode": "6009648182608",
+      "description": "IMPI TIDY WIPES ROLL 200mm x750m 1.7kg",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 7559.35,
+      "qty2026": 63
+    },
+    {
+      "barcode": "6009660945328",
+      "description": "ALEXIS CHAIR BLACK",
+      "dept": "Sports n Outdoor",
+      "supplier": "BUZZ TRADING HUNDRED AND FOUR CC",
+      "sales2023": 1018.1934375,
+      "sales2024": 0,
+      "qty2023": 6,
+      "sales2026": 8459.53,
+      "qty2026": 47
+    },
+    {
+      "barcode": "6009648183247",
+      "description": "FACIAL TISSUE 2ply 200 Sheets",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 65.97171039652791,
+      "sales2024": 4535.555089761294,
+      "qty2023": 4,
+      "sales2026": 7321.93,
+      "qty2026": 293
+    },
+    {
+      "barcode": "8694064004115",
+      "description": "MULTI BOX No2 13lt",
+      "dept": "Home n Kitchen",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 7214.63,
+      "qty2026": 37
+    },
+    {
+      "barcode": "010123241024",
+      "description": "Cloth Stand",
+      "dept": "HomeDecor Kitchen n Garden Supplies",
+      "supplier": "VC Lifestyle 总仓库",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 7199.9,
+      "qty2026": 18
+    },
+    {
+      "barcode": "8694064013148",
+      "description": "RECTANGULAR MULTI BOX 13lt",
+      "dept": "Home n Kitchen",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 6999.54,
+      "qty2026": 35
+    },
+    {
+      "barcode": "D0020002DD2",
+      "description": "Lucky Light Duty Chair color",
+      "dept": "HomeDecor Kitchen n Garden Supplies",
+      "supplier": "DXC General Trading (PTY) LTD",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 6999.29,
+      "qty2026": 89
+    },
+    {
+      "barcode": "6009537543213",
+      "description": "LAVENDER GEL 5lt",
+      "dept": "Household",
+      "supplier": "Jordan Chemicals PTY LTD",
+      "sales2023": 0,
+      "sales2024": 3825.8108192090394,
+      "qty2023": 0,
+      "sales2026": 6995.32,
+      "qty2026": 65
+    },
+    {
+      "barcode": "6009660942846",
+      "description": "STORAGE BOX 65lt Black",
+      "dept": "Houseware Groceries n Daily Necessities",
+      "supplier": "ValueCo Import n Export (PTY) LTD",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 6928.9,
+      "qty2026": 11
+    },
+    {
+      "barcode": "6009537343035",
+      "description": "AMMONIATED CLEANER 5lt",
+      "dept": "Household",
+      "supplier": "Jordan Chemicals PTY LTD",
+      "sales2023": 0,
+      "sales2024": 981.4730483271375,
+      "qty2023": 0,
+      "sales2026": 6718.54,
+      "qty2026": 112
+    },
+    {
+      "barcode": "6009696451497",
+      "description": "WOOD BAG N-PUNCH 40X70MM",
+      "dept": "Toys Games n Baby Products",
+      "supplier": "WEST RAND PACK 2",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 6717.74,
+      "qty2026": 44
+    },
+    {
+      "barcode": "6009648182875",
+      "description": "PREMIER TOILET PAPER 1ply 48s",
+      "dept": "Household",
+      "supplier": "Nova Papers (Pty) Ltd",
+      "sales2023": 38727.30867582971,
+      "sales2024": 7201.359051290647,
+      "qty2023": 11616,
+      "sales2026": 45397.29,
+      "qty2026": 227
+    },
+    {
+      "barcode": "6009703710005",
+      "description": "ZIP LOCK BAGS 215x315mm 40mic",
+      "dept": "Home n Kitchen",
+      "supplier": "SIGN  SEAL TRADING 154 (PTY) LTD T/A PACKIT",
+      "sales2023": 4313.16960651289,
+      "sales2024": 2875.4464043419266,
+      "qty2023": 6000,
+      "sales2026": 10978.33,
+      "qty2026": 122
+    },
+    {
+      "barcode": "8694064000728",
+      "description": "MULTI BOX JOCKER 8lt",
+      "dept": "Home n Kitchen",
+      "supplier": "Home Utility Distributors",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 6664.56,
+      "qty2026": 43
+    },
+    {
+      "barcode": "6228400480404",
+      "description": "Tung Lok Lee Number  Balloon with Straw 40 Col 1339-40",
+      "dept": "Party n Gifts",
+      "supplier": "VC Lifestyle 总仓库",
+      "sales2023": 0,
+      "sales2024": 0,
+      "qty2023": 0,
+      "sales2026": 6647.18,
+      "qty2026": 266
+    }
+  ],
+  "supplierAnalysis": {
+    "biggestLosers": [
+      {
+        "name": "FORMOSA PLASTIC (FP)",
+        "sales2023": 893732.6065102656,
+        "sales2026": 6990.32,
+        "gap": -886742.2865102657
+      },
+      {
+        "name": "FUNKI LINES WES200 ",
+        "sales2023": 886968.5282089193,
+        "sales2026": 49501.10999999999,
+        "gap": -837467.4182089193
+      },
+      {
+        "name": "USABCO INDUSTRIES PTY LTD",
+        "sales2023": 1168365.0082172402,
+        "sales2026": 371137.7099999996,
+        "gap": -797227.2982172406
+      },
+      {
+        "name": "YUNG SHENG PLASTICS",
+        "sales2023": 698515.5485393216,
+        "sales2026": 0,
+        "gap": -698515.5485393216
+      },
+      {
+        "name": "WEST PACK LIFESTYLE (PTY) LTD T/A WEST PACK LIFESTYLE DISTRIBUTION CENTRE pack",
+        "sales2023": 638069.8481911229,
+        "sales2026": 35806.40999999999,
+        "gap": -602263.4381911228
+      },
+      {
+        "name": "FREEDOM STATIONERY (PTY) LTD",
+        "sales2023": 460169.63092367013,
+        "sales2026": 0,
+        "gap": -460169.63092367013
+      },
+      {
+        "name": "LANK SOFT (PTY) LTD ",
+        "sales2023": 448374.9305342183,
+        "sales2026": 0,
+        "gap": -448374.9305342183
+      },
+      {
+        "name": "FUNKI LINES (PTY) LTD (FL)",
+        "sales2023": 398001.28809194634,
+        "sales2026": 6475.76,
+        "gap": -391525.5280919463
+      },
+      {
+        "name": "BUZZ TRADING  HUNDRED AND FOUR CC",
+        "sales2023": 384341.86202367046,
+        "sales2026": 0,
+        "gap": -384341.86202367046
+      },
+      {
+        "name": "NATIONAL STATIONERY (PTY) (NS)",
+        "sales2023": 388303.8557796453,
+        "sales2026": 6354.549999999997,
+        "gap": -381949.30577964534
+      }
+    ],
+    "biggestGainers": [
+      {
+        "name": "Direct",
+        "sales2023": 0,
+        "sales2026": 612640.9499999953,
+        "gap": 612640.9499999953
+      },
+      {
+        "name": "VC Lifestyle 总仓库",
+        "sales2023": 0,
+        "sales2026": 504666.52999999723,
+        "gap": 504666.52999999723
+      },
+      {
+        "name": "Home Utility Distributors",
+        "sales2023": 10227.55374761204,
+        "sales2026": 249603.3199999998,
+        "gap": 239375.76625238775
+      },
+      {
+        "name": "C/Cloud Trading (MuchBetter) China Mall",
+        "sales2023": 0,
+        "sales2026": 223962.36999999997,
+        "gap": 223962.36999999997
+      },
+      {
+        "name": "Yiwu ValueCo Trading Co., Ltd",
+        "sales2023": 748.1044444444443,
+        "sales2026": 198874.84000000005,
+        "gap": 198126.7355555556
+      },
+      {
+        "name": "Jordan Chemicals PTY LTD",
+        "sales2023": 21240.78733380081,
+        "sales2026": 139731.38000000006,
+        "gap": 118490.59266619926
+      },
+      {
+        "name": "F11 China Mall",
+        "sales2023": 0,
+        "sales2026": 107141.67000000003,
+        "gap": 107141.67000000003
+      },
+      {
+        "name": "B34/F09/F10C China Mall",
+        "sales2023": 0,
+        "sales2026": 105921.85000000005,
+        "gap": 105921.85000000005
+      },
+      {
+        "name": "Deli South Africa (PTY) Ltd",
+        "sales2023": 0,
+        "sales2026": 70141.04999999999,
+        "gap": 70141.04999999999
+      },
+      {
+        "name": "L228 Africa Shopping Centre",
+        "sales2023": 0,
+        "sales2026": 54997.760000000024,
+        "gap": 54997.760000000024
+      }
+    ]
+  }
+}
